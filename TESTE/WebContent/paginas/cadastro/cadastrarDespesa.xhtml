@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadastro de Despesa</title>
+	</h:head>
+<h:body>
+
+	<h:outputLabel value="Dados da Despesa" styleClass="titleHelvetica" />
+
+	<hr />
+
+	<h:form id="formInputCadastroDespesa">
+	<hr />
+		<h:panelGrid columns="1">
+
+
+
+			<h:outputLabel value="Id Despesa" for="inputidDespesa"
+				styleClass="emphasis" />
+			<h:inputText id="inputidDespesa" label="Campo Nome "
+				value="#{despesaBean.despesa.idDespesa}" required="true" size="20"
+				maxlength="100" style=" width : 220px;"/>
+			
+<hr />
+			<h:outputLabel value="Nome despesa" for="inputNome"
+				styleClass="emphasis" />
+			<h:inputText id="inputNome" label="Campo Nome "
+				value="#{despesaBean.despesa.nomeDespesa}" required="true" size="20"
+				maxlength="100" />
+
+						<h:outputText />
+			<h:outputLabel value="Tipo Despesa" for="inputTipoDespesa" styleClass="emphasis" />
+			<h:panelGroup>
+				<h:selectOneRadio id="inputTipoDespesa" value="#{despesaBean.despesa.idTipoDespesa}">
+					<f:selectItem itemValue="1" itemLabel="Despesa Residenciais" />
+					<f:selectItem itemValue="2" itemLabel="Fatura Cartão" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			
+			<h:outputText />
+			<h:outputLabel value="Data de Pagamento" for="inputDataPagamento"
+				styleClass="emphasis" />
+			<h:inputText id="inputDataPagamento"
+				label="Campo Data de Pagamento"
+				value="#{despesaBean.despesa.dataPagamento}" size="20">
+				<f:convertDateTime dateStyle="default" />
+			</h:inputText>
+
+			<h:outputText />
+			<h:outputLabel value="Valor" for="inputValor" styleClass="emphasis" />
+			<h:inputText id="inputValor" label="Campo Valor"
+				value="#{despesaBean.despesa.valor}" size="20" maxlength="50">
+				
+			</h:inputText>
+			
+			<h:outputText />
+			<h:outputLabel value="Desconto" for="inputDesconto"
+				styleClass="emphasis" />
+			<h:inputText id="inputDesconto"
+				label="Campo Desconto"
+				value="#{despesaBean.despesa.desconto}" size="20">
+				</h:inputText>
+
+			
+			
+			<h:outputText />
+			<h:commandButton value="Salvar"
+				action="#{despesaBean.salvar()}" />
+			<h:outputText />
+		</h:panelGrid>
+
+	</h:form>
+
+	<h:outputText value="* Campos de preenchimento obrigatório"
+	 />
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid>
+			<h:commandLink action="#{despesaBean.consultar()}"
+				value="consultar" rendered="#{!empty despesaBean.despesa.idDespesa}" />
+			<h:commandLink action="#{despesaBean.homepage()}" value="homepage" />
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

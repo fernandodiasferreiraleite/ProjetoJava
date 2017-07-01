@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Consultar Despesas Cadastradas</title>
+</h:head>
+<h:body>
+
+	<h:outputLabel value="#{despesaBean.caption}" styleClass="titleHelvetica" />
+
+	<hr />
+
+	<h:messages style="font-size:large; color: red; font-style: italic" />
+
+	<h:outputLabel value="No momento não existe despesas cadastrados."
+		style="font-size:xx-large; color:red; font-style: italic;font-family: 'Georgia';"
+		rendered="#{empty despesaBean.despesas}" />
+
+<hr />
+	<h:form id="formConsultarDespesa">
+
+		<h:dataTable value="#{despesaBean.despesas}" var="despesa" border="1"
+			cellspacing="5" cellpadding="5" rendered="#{!empty despesaBean.despesas}">
+
+			<f:facet name="caption">
+				<h:outputLabel value="despesa Cadastradas"
+					style="FONT-FAMILY: 'Futura Md BT'; color:Navy; font-size: 2.5em; background-color:#DBDBDB; text-align: center; display: block;" />
+			</f:facet>
+
+			<f:facet name="header">
+				<h:outputText
+					value="Relação de despesas do sisitema: edição e exclusão"
+					styleClass="emphasis" />
+			</f:facet>
+
+			<f:facet name="footer">
+				<h:outputText value="Fim da Tabela"
+					style="FONT-FAMILY: 'Futura Md BT'; color:Navy; font-size: 2.5em; background-color:#DBDBDB; text-align: center; display: block;" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Código despesa" />
+				</f:facet>
+				<h:outputText value="#{despesa.idDespesa}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="NomeDespesa" />
+				</f:facet>
+				<h:outputText value="#{despesa.nomeDespesa}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="TipoDespesa" />
+				</f:facet>
+				<h:outputText value="#{despesa.idTipoDespesa}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data Pagamento" />
+				</f:facet>
+				<h:outputText value="#{despesa.dataPagamento}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor" />
+				</f:facet>
+				<h:outputText value="#{despesa.valor}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Desconto" />
+				</f:facet>
+				<h:outputText value="#{despesa.desconto}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Editar" />
+				</f:facet>
+				<h:commandLink
+					action="/paginas/cadastro/cadastroDespesa/cadastrarDespesa">
+					<h:graphicImage library="imagens" name="editar16.png"
+						styleClass="img" title="editar" />
+					<f:setPropertyActionListener value="#{despesa}"
+						target="#{despesaBean.despesa}" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid>
+			<h:commandLink action="#{despesaBean.homepage()}" value="homepage" />
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>
